@@ -9,6 +9,9 @@ public class PolynomialCalculator {
     private JButton divisionButton;
     private JTextField textField1;
     private JTextField textField2;
+    private JTextField textField3;
+    private JButton derrivationButton;
+    private JButton integrationButton;
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
