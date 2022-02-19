@@ -35,10 +35,14 @@ public class Polynomial extends Monomial {
 
     public String toString() {
         String s = "";
+        LinkedList<Monomial> aux = new LinkedList<>();
         for (Monomial n : polinom) {
+            aux.addFirst(n);
+        }
+        for (Monomial n : aux) {
             if (n.getCoef() > 0)
                 s += " +" + n;
-            else if(n.getCoef() < 0)
+            else if (n.getCoef() < 0)
                 s += " " + n;
         }
         s = s.substring(1);
@@ -48,12 +52,12 @@ public class Polynomial extends Monomial {
     public static Polynomial addOperation(Polynomial A, Polynomial B) {
         Polynomial C = new Polynomial(Math.max(A.getHighestDeg(), B.getHighestDeg()));
 
-        for(Monomial n : C.getPolinom()){
-            for(Monomial m : A.getPolinom()){
+        for (Monomial n : C.getPolinom()) {
+            for (Monomial m : A.getPolinom()) {
                 n.addOperation(m);
             }
 
-            for(Monomial m : B.getPolinom()){
+            for (Monomial m : B.getPolinom()) {
                 n.addOperation(m);
             }
         }
@@ -63,15 +67,39 @@ public class Polynomial extends Monomial {
     public static Polynomial subOperation(Polynomial A, Polynomial B) {
         Polynomial C = new Polynomial(Math.max(A.getHighestDeg(), B.getHighestDeg()));
 
-        for(Monomial n : C.getPolinom()){
-            for(Monomial m : A.getPolinom()){
+        for (Monomial n : C.getPolinom()) {
+            for (Monomial m : A.getPolinom()) {
                 n.addOperation(m);
             }
 
-            for(Monomial m : B.getPolinom()){
+            for (Monomial m : B.getPolinom()) {
                 Monomial aux = new Monomial(-m.getCoef(), m.getDeg());
                 n.addOperation(aux);
             }
+        }
+        return C;
+    }
+
+    public static Polynomial mulOperation(Polynomial A, Polynomial B) {
+        Polynomial C = new Polynomial(A.getHighestDeg() + B.getHighestDeg());
+
+        for (Monomial n : A.getPolinom()) {
+            Polynomial aux = new Polynomial(0);
+            for (Monomial m : B.getPolinom()) {
+                Monomial product = new Monomial(n.getCoef(), n.getDeg());
+                product.mulOperation(m);
+                aux.getPolinom().add(product);
+            }
+            C = addOperation(C, aux);
+        }
+        return C;
+    }
+
+    public static Polynomial derivOperation(Polynomial A, Polynomial B) {
+        Polynomial C = new Polynomial(A.getHighestDeg() + B.getHighestDeg());
+
+        for (Monomial n : A.getPolinom()) {
+            
         }
         return C;
     }

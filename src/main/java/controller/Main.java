@@ -34,6 +34,7 @@ public class Main {
 
        System.out.println(Polynomial.addOperation(p1, p2));
        System.out.println(Polynomial.subOperation(p1, p2));
+       System.out.println(Polynomial.mulOperation(p1, p2));
        // System.out.println(p1);
     }
 }

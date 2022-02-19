@@ -46,4 +46,14 @@ public class Monomial {
             this.coef += m.getCoef();
         }
     }
+
+    public void mulOperation(Monomial m) {
+        this.deg += m.getDeg();
+        this.coef *= m.getCoef();
+    }
+
+    public void derivOperation() {
+        this.coef *= this.deg;
+        this.deg--;
+    }
 }
