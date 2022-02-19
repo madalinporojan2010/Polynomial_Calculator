@@ -95,12 +95,18 @@ public class Polynomial extends Monomial {
         return C;
     }
 
-    public static Polynomial derivOperation(Polynomial A, Polynomial B) {
-        Polynomial C = new Polynomial(A.getHighestDeg() + B.getHighestDeg());
-
-        for (Monomial n : A.getPolinom()) {
-            
+    public static Polynomial derivateOperation(Polynomial A) {
+        Polynomial C = new Polynomial(A.getHighestDeg() - 1);
+        C = addOperation(C, A);
+        for (Monomial n : C.getPolinom()) {
+            n.derivateOperation();
         }
+        return C;
+    }
+
+    public static Polynomial integrateOperation(Polynomial A) {
+        Polynomial C = new Polynomial(A.getHighestDeg() - 1);
+        
         return C;
     }
 }

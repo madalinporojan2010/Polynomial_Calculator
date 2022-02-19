@@ -52,8 +52,9 @@ public class Monomial {
         this.coef *= m.getCoef();
     }
 
-    public void derivOperation() {
+    public void derivateOperation() {
         this.coef *= this.deg;
-        this.deg--;
+        if (this.deg > 0)
+            this.deg--;
     }
 }
