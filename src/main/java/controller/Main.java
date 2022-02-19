@@ -32,11 +32,24 @@ public class Main {
         p2.getPolinom().add(m5);
         p2.getPolinom().add(m6);
 
-       System.out.println(Polynomial.addOperation(p1, p2));
-       System.out.println(Polynomial.subOperation(p1, p2));
-       System.out.println(Polynomial.mulOperation(p1, p2));
-       System.out.println(Polynomial.derivateOperation(p1));
-       System.out.println(Polynomial.integrateOperation(p1)); // put the constant C
-       // System.out.println(p1);
+        p1.getPolinom().sort(Monomial::compareTo);
+        p2.getPolinom().sort(Monomial::compareTo);
+        System.out.println("Polinoamele :");
+        System.out.println(p1);
+        System.out.println(p2);
+
+
+        System.out.println("\n\nAdunare:");
+        System.out.println(Polynomial.addOperation(p1, p2));
+        System.out.println("\nScadere:");
+        System.out.println(Polynomial.subOperation(p1, p2));
+        System.out.println("\nInmultire:");
+        System.out.println(Polynomial.mulOperation(p1, p2));
+        System.out.println("\nDerivare:");
+        System.out.println(Polynomial.derivateOperation(p1));
+        System.out.println("\nIntegrare:");
+        System.out.println(Polynomial.integrateOperation(p2)); // put the constant C
+        ////////// ordonare dupa grad. --- done
+        // System.out.println(p1);
     }
 }

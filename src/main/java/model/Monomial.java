@@ -2,7 +2,7 @@ package model;
 
 import java.text.DecimalFormat;
 
-public class Monomial {
+public class Monomial implements Comparable<Monomial>{
     private float coef;
     private int deg;
 
@@ -55,6 +55,11 @@ public class Monomial {
         this.coef *= m.getCoef();
     }
 
+//    public void divOperation(Monomial m) {
+//        this.deg -= m.getDeg();
+//        this.coef /= m.
+//    }
+
     public void derivateOperation() {
         this.coef *= this.deg;
         if (this.deg > 0)
@@ -64,5 +69,10 @@ public class Monomial {
     public void integrateOperation() {
         this.deg++;
         this.coef /= this.deg;
+    }
+
+    @Override
+    public int compareTo(Monomial o) {
+        return -Integer.compare(this.deg, o.getDeg());
     }
 }

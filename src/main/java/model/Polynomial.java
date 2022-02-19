@@ -35,11 +35,7 @@ public class Polynomial extends Monomial {
 
     public String toString() {
         String s = "";
-        LinkedList<Monomial> aux = new LinkedList<>();
         for (Monomial n : polinom) {
-            aux.addFirst(n);
-        }
-        for (Monomial n : aux) {
             if (n.getCoef() > 0)
                 s += " +" + n;
             else if (n.getCoef() < 0)
@@ -61,6 +57,7 @@ public class Polynomial extends Monomial {
                 n.addOperation(m);
             }
         }
+        C.getPolinom().sort(Monomial::compareTo);
         return C;
     }
 
@@ -77,6 +74,7 @@ public class Polynomial extends Monomial {
                 n.addOperation(aux);
             }
         }
+        C.getPolinom().sort(Monomial::compareTo);
         return C;
     }
 
@@ -92,6 +90,16 @@ public class Polynomial extends Monomial {
             }
             C = addOperation(C, aux);
         }
+        C.getPolinom().sort(Monomial::compareTo);
+        return C;
+    }
+
+    public static Polynomial divOperation(Polynomial A, Polynomial B) {
+        Polynomial C = new Polynomial(A.getHighestDeg() + B.getHighestDeg());
+        Polynomial auxA = new Polynomial(A.getHighestDeg());
+        Polynomial auxB = new Polynomial(B.getHighestDeg());
+
+
         return C;
     }
 
@@ -101,6 +109,7 @@ public class Polynomial extends Monomial {
         for (Monomial n : C.getPolinom()) {
             n.derivateOperation();
         }
+        C.getPolinom().sort(Monomial::compareTo);
         return C;
     }
 
@@ -110,6 +119,8 @@ public class Polynomial extends Monomial {
         for (Monomial n : C.getPolinom()) {
             n.integrateOperation();
         }
+        C.getPolinom().sort(Monomial::compareTo);
         return C;
     }
+
 }
