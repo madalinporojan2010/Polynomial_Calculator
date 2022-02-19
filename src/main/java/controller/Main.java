@@ -33,6 +33,7 @@ public class Main {
         p2.getPolinom().add(m6);
 
        System.out.println(Polynomial.addOperation(p1, p2));
+       System.out.println(Polynomial.subOperation(p1, p2));
        // System.out.println(p1);
     }
 }

@@ -41,7 +41,7 @@ public class Polynomial extends Monomial {
             else if(n.getCoef() < 0)
                 s += " " + n;
         }
-        s = s.substring(2);
+        s = s.substring(1);
         return s;
     }
 
@@ -55,6 +55,22 @@ public class Polynomial extends Monomial {
 
             for(Monomial m : B.getPolinom()){
                 n.addOperation(m);
+            }
+        }
+        return C;
+    }
+
+    public static Polynomial subOperation(Polynomial A, Polynomial B) {
+        Polynomial C = new Polynomial(Math.max(A.getHighestDeg(), B.getHighestDeg()));
+
+        for(Monomial n : C.getPolinom()){
+            for(Monomial m : A.getPolinom()){
+                n.addOperation(m);
+            }
+
+            for(Monomial m : B.getPolinom()){
+                Monomial aux = new Monomial(-m.getCoef(), m.getDeg());
+                n.addOperation(aux);
             }
         }
         return C;
