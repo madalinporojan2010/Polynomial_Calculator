@@ -106,7 +106,10 @@ public class Polynomial extends Monomial {
 
     public static Polynomial integrateOperation(Polynomial A) {
         Polynomial C = new Polynomial(A.getHighestDeg() - 1);
-        
+        C = addOperation(C, A);
+        for (Monomial n : C.getPolinom()) {
+            n.integrateOperation();
+        }
         return C;
     }
 }

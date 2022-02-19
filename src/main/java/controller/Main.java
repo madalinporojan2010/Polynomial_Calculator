@@ -35,7 +35,8 @@ public class Main {
        System.out.println(Polynomial.addOperation(p1, p2));
        System.out.println(Polynomial.subOperation(p1, p2));
        System.out.println(Polynomial.mulOperation(p1, p2));
-       System.out.println(Polynomial.derivOperation(p1));
+       System.out.println(Polynomial.derivateOperation(p1));
+       System.out.println(Polynomial.integrateOperation(p1)); // put the constant C
        // System.out.println(p1);
     }
 }

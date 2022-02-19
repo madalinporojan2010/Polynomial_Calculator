@@ -1,10 +1,12 @@
 package model;
 
+import java.text.DecimalFormat;
+
 public class Monomial {
-    private int coef;
+    private float coef;
     private int deg;
 
-    public Monomial(int coef, int deg) {
+    public Monomial(float coef, int deg) {
         this.coef = coef;
         this.deg = deg;
     }
@@ -13,7 +15,7 @@ public class Monomial {
         this(0, 0);
     }
 
-    public int getCoef() {
+    public float getCoef() {
         return coef;
     }
 
@@ -30,12 +32,13 @@ public class Monomial {
     }
 
     public String toString() {
+        DecimalFormat df = new DecimalFormat("0.00");
         String s = "";
         if (coef != 0) {
             if (deg != 0) {
-                s += coef + "*X^" + deg;
+                s += df.format(coef) + "*X^" + deg;
             } else {
-                s += coef;
+                s += df.format(coef);
             }
         }
         return s;
@@ -56,5 +59,10 @@ public class Monomial {
         this.coef *= this.deg;
         if (this.deg > 0)
             this.deg--;
+    }
+
+    public void integrateOperation() {
+        this.deg++;
+        this.coef /= this.deg;
     }
 }
