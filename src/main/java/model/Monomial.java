@@ -29,26 +29,21 @@ public class Monomial {
         this.deg = deg;
     }
 
-    public String toString(){
+    public String toString() {
         String s = "";
-        if(coef != 0){
-            if(deg != 0){
+        if (coef != 0) {
+            if (deg != 0) {
                 s += coef + "*X^" + deg;
-            }else{
+            } else {
                 s += coef;
             }
         }
         return s;
     }
 
-    public static Monomial addOperation(Monomial n, Monomial m) throws Exception{
-        Monomial p = new Monomial();
-        if (n.getDeg() == m.getDeg()) {
-            p.setDeg(n.getDeg());
-            p.setCoef(n.getCoef() + m.getCoef());
-        }else{
-            throw new Exception();
+    public void addOperation(Monomial m) throws Error {
+        if (this.deg == m.getDeg()) {
+            this.coef += m.getCoef();
         }
-        return p;
     }
 }

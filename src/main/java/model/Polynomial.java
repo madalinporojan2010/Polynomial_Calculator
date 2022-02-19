@@ -12,8 +12,8 @@ public class Polynomial extends Monomial {
     public Polynomial(int highestDeg) {
         this.highestDeg = highestDeg;
         polinom = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            polinom.add(new Monomial());
+        for (int i = 0; i <= highestDeg; i++) {
+            polinom.add(new Monomial(0, i));
         }
     }
 
@@ -37,16 +37,26 @@ public class Polynomial extends Monomial {
         String s = "";
         for (Monomial n : polinom) {
             if (n.getCoef() > 0)
-                s += " + " + n;
-            else
-                s += " " + n + " ";
+                s += " +" + n;
+            else if(n.getCoef() < 0)
+                s += " " + n;
         }
+        s = s.substring(2);
         return s;
     }
 
     public static Polynomial addOperation(Polynomial A, Polynomial B) {
         Polynomial C = new Polynomial(Math.max(A.getHighestDeg(), B.getHighestDeg()));
-        
+
+        for(Monomial n : C.getPolinom()){
+            for(Monomial m : A.getPolinom()){
+                n.addOperation(m);
+            }
+
+            for(Monomial m : B.getPolinom()){
+                n.addOperation(m);
+            }
+        }
         return C;
     }
 }

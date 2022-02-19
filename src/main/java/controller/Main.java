@@ -14,7 +14,7 @@ public class Main {
         Monomial n4 = new Monomial(6, 3);
 
         Monomial m1 = new Monomial(3, 0);
-        Monomial m2 = new Monomial(-1, 1);
+        Monomial m2 = new Monomial(1, 1);
         Monomial m3 = new Monomial(4, 2);
         Monomial m4 = new Monomial(2, 3);
         Monomial m5 = new Monomial(-4, 4);
