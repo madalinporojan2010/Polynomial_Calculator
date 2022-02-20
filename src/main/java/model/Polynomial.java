@@ -101,7 +101,6 @@ public class Polynomial extends Monomial {
 
     public static Polynomial[] divOperation(Polynomial A, Polynomial B) throws ArithmeticException {
         if (Math.min(A.getHighestDeg(), B.getHighestDeg()) != 0) {
-            Polynomial[] ret = new Polynomial[2];
             Polynomial P = new Polynomial(Math.max(A.getHighestDeg(), B.getHighestDeg())), Q = new Polynomial(Math.min(A.getHighestDeg(), B.getHighestDeg()));
 
             if (A.getHighestDeg() > B.getHighestDeg()) {
@@ -134,9 +133,7 @@ public class Polynomial extends Monomial {
                     P.setHighestDeg();
                 }
             }
-            ret[0] = C;
-            ret[1] = P;
-            return ret;
+            return new Polynomial[]{C, P};
         } else {
             throw new ArithmeticException("Division by zero");
         }
