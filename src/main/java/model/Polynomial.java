@@ -32,7 +32,7 @@ public class Polynomial extends Monomial {
     public void setHighestDeg() {
         int max = 0;
         for (Monomial n : this.polinom) {
-            if (max < n.getDeg() && n.getCoef() != 0)
+            if (max < n.getDeg() && Math.abs(n.getCoef()) > 0.0001)
                 max = n.getDeg();
         }
         this.highestDeg = max;
@@ -46,7 +46,7 @@ public class Polynomial extends Monomial {
             else if (n.getCoef() < 0)
                 s += " " + n;
         }
-        s = s.substring(0);
+        s = s.substring(1);
         return s;
     }
 
@@ -129,8 +129,6 @@ public class Polynomial extends Monomial {
 
                     aux = Polynomial.mulOperation(Q, aux);
                     P.addOperation(aux);
-                    P.getPolinom().get(0).setCoef(0);
-                    P.getPolinom().get(0).setDeg(0);
                     P.setHighestDeg();
                 }
             }

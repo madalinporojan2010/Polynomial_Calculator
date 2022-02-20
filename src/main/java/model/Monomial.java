@@ -34,7 +34,7 @@ public class Monomial implements Comparable<Monomial>{
     public String toString() {
         DecimalFormat df = new DecimalFormat("0.00");
         String s = "";
-        if (coef != 0) {
+        if (Math.abs(coef) > 0.0001) {
             if (deg != 0) {
                 s += df.format(coef) + "*X^" + deg;
             } else {
