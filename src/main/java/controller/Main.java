@@ -38,18 +38,24 @@ public class Main {
         System.out.println(p1);
         System.out.println(p2);
 
+        try {
+            System.out.println("\n\nAdunare:");
+            System.out.println(Polynomial.addOperation(p1, p2));
+            System.out.println("\nScadere:");
+            System.out.println(Polynomial.subOperation(p1, p2));
+            System.out.println("\nInmultire:");
+            System.out.println(Polynomial.mulOperation(p1, p2));
+            System.out.println("\nImpartire:");
+            Polynomial[] ret = Polynomial.divOperation(p1, p2);
+            System.out.println("    Cat:" + ret[0] + "\n   Rest:" + ret[1]);
+            System.out.println("\nDerivare:");
+            System.out.println(Polynomial.derivateOperation(p1));
+            System.out.println("\nIntegrare:");
+            System.out.println(Polynomial.integrateOperation(p2)); // put the constant C
+            ////////// ordonare dupa grad. --- done
+            // System.out.println(p1);
+        } catch (ArithmeticException e) {
 
-        System.out.println("\n\nAdunare:");
-        System.out.println(Polynomial.addOperation(p1, p2));
-        System.out.println("\nScadere:");
-        System.out.println(Polynomial.subOperation(p1, p2));
-        System.out.println("\nInmultire:");
-        System.out.println(Polynomial.mulOperation(p1, p2));
-        System.out.println("\nDerivare:");
-        System.out.println(Polynomial.derivateOperation(p1));
-        System.out.println("\nIntegrare:");
-        System.out.println(Polynomial.integrateOperation(p2)); // put the constant C
-        ////////// ordonare dupa grad. --- done
-        // System.out.println(p1);
+        }
     }
 }

@@ -29,8 +29,13 @@ public class Polynomial extends Monomial {
         return highestDeg;
     }
 
-    public void setHighestDeg(int highestDeg) {
-        this.highestDeg = highestDeg;
+    public void setHighestDeg() {
+        int max = 0;
+        for (Monomial n : this.polinom) {
+            if (max < n.getDeg() && n.getCoef() != 0)
+                max = n.getDeg();
+        }
+        this.highestDeg = max;
     }
 
     public String toString() {
@@ -41,7 +46,7 @@ public class Polynomial extends Monomial {
             else if (n.getCoef() < 0)
                 s += " " + n;
         }
-        s = s.substring(1);
+        s = s.substring(0);
         return s;
     }
 
@@ -94,17 +99,51 @@ public class Polynomial extends Monomial {
         return C;
     }
 
-    public static Polynomial divOperation(Polynomial A, Polynomial B) {
-        Polynomial C = new Polynomial(A.getHighestDeg() + B.getHighestDeg());
-        Polynomial auxA = new Polynomial(A.getHighestDeg());
-        Polynomial auxB = new Polynomial(B.getHighestDeg());
+    public static Polynomial[] divOperation(Polynomial A, Polynomial B) throws ArithmeticException {
+        if (Math.min(A.getHighestDeg(), B.getHighestDeg()) != 0) {
+            Polynomial[] ret = new Polynomial[2];
+            Polynomial P = new Polynomial(Math.max(A.getHighestDeg(), B.getHighestDeg())), Q = new Polynomial(Math.min(A.getHighestDeg(), B.getHighestDeg()));
 
+            if (A.getHighestDeg() > B.getHighestDeg()) {
+                P = Polynomial.addOperation(P, A);
+                Q = Polynomial.addOperation(Q, B);
+            } else {
+                P = Polynomial.addOperation(P, B);
+                Q = Polynomial.addOperation(Q, A);
+            }
+            Polynomial C = new Polynomial(Math.max(P.getHighestDeg() - Q.getHighestDeg(), 0));
 
-        return C;
+            for (Monomial n : P.getPolinom()) {
+                if (P.getHighestDeg() >= Q.getHighestDeg()) {
+                    Monomial impartitor = Q.getPolinom().get(0);
+                    Monomial catul = new Monomial(n.getCoef(), n.getDeg());
+
+                    catul.getQuotient(impartitor);
+
+                    Polynomial aux = new Polynomial(catul.getDeg());
+                    aux.getPolinom().add(catul);
+                    C = Polynomial.subOperation(C, aux);
+
+                    aux = Polynomial.mulOperation(Q, aux);
+                    for (Monomial m : P.getPolinom()) {
+                        for (Monomial q : aux.getPolinom())
+                            m.addOperation(q);
+                    }
+                    P.getPolinom().get(0).setCoef(0);
+                    P.getPolinom().get(0).setDeg(0);
+                    P.setHighestDeg();
+                }
+            }
+            ret[0] = C;
+            ret[1] = P;
+            return ret;
+        } else {
+            throw new ArithmeticException("Division by zero");
+        }
     }
 
     public static Polynomial derivateOperation(Polynomial A) {
-        Polynomial C = new Polynomial(A.getHighestDeg() - 1);
+        Polynomial C = new Polynomial(Math.max(A.getHighestDeg() - 1, 0));
         C = addOperation(C, A);
         for (Monomial n : C.getPolinom()) {
             n.derivateOperation();
@@ -114,7 +153,7 @@ public class Polynomial extends Monomial {
     }
 
     public static Polynomial integrateOperation(Polynomial A) {
-        Polynomial C = new Polynomial(A.getHighestDeg() - 1);
+        Polynomial C = new Polynomial(A.getHighestDeg() + 1);
         C = addOperation(C, A);
         for (Monomial n : C.getPolinom()) {
             n.integrateOperation();

@@ -55,10 +55,10 @@ public class Monomial implements Comparable<Monomial>{
         this.coef *= m.getCoef();
     }
 
-//    public void divOperation(Monomial m) {
-//        this.deg -= m.getDeg();
-//        this.coef /= m.
-//    }
+    public void getQuotient(Monomial m) {
+        this.deg = this.deg - m.getDeg();
+        this.coef = -this.coef / m.getCoef();
+    }
 
     public void derivateOperation() {
         this.coef *= this.deg;
