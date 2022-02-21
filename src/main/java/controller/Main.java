@@ -6,11 +6,10 @@ import view.PolynomialCalculator;
 
 public class Main {
     public static void main(String[] args) {
-        PolynomialCalculator app = new PolynomialCalculator();
+        GUIController controller = new GUIController();
 
 
 
-        
 //        Polynomial p1 = new Polynomial(3);
 //        Polynomial p2 = new Polynomial(5);
 //

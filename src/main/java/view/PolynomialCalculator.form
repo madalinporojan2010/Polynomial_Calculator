@@ -84,7 +84,7 @@
           <text value="Second Polynomial:"/>
         </properties>
       </component>
-      <component id="7e211" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+      <component id="7e211" class="javax.swing.JTextField" binding="polinom1TextField">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="150" height="25"/>
@@ -96,7 +96,7 @@
           <text value=""/>
         </properties>
       </component>
-      <component id="f0cf2" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+      <component id="f0cf2" class="javax.swing.JTextField" binding="polinom2TextField">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="150" height="25"/>
@@ -104,7 +104,9 @@
             <maximum-size width="150" height="25"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <text value=""/>
+        </properties>
       </component>
       <component id="3912" class="javax.swing.JLabel">
         <constraints>
@@ -120,7 +122,7 @@
           <text value="Result:"/>
         </properties>
       </component>
-      <component id="ef4dd" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+      <component id="ef4dd" class="javax.swing.JTextField" binding="polinomRetTextField">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="150" height="25"/>
