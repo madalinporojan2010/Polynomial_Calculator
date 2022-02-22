@@ -32,11 +32,9 @@ public class GUIController {
         buttonListener = e -> {
             p1 = getTextFieldData(app.getPolinom1TextField(), app.getLabel1());
             p2 = getTextFieldData(app.getPolinom2TextField(), app.getLabel2());
-            p1.getPolinom().sort(Monomial::compareTo);
-            p2.getPolinom().sort(Monomial::compareTo);
-            System.out.println(p1);
-            System.out.println(p2);
             if (p1 != null && p2 != null) {
+            p1.getPolinom().sort(Monomial::compareTo);
+                p2.getPolinom().sort(Monomial::compareTo);
                 if (e.getSource().toString().contains("Addition")) {
                     setTextFieldData(app.getPolinomRetTextField(), Polynomial.addOperation(p1, p2).toString());
                 } else if (e.getSource().toString().contains("Subtraction")) {

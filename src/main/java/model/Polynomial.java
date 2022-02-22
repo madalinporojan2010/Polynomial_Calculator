@@ -43,18 +43,19 @@ public class Polynomial extends Monomial {
                 max = n.getDeg();
         }
         this.highestDeg = max;
-        aux = max;
+        /*aux = max;
         for (Monomial n : this.polinom) {
-            n.setDeg(aux--);
-        }
+            if (aux >= 0)
+                n.setDeg(aux--);
+        }*/
     }
 
     public String toString() {
         String s = "";
         for (Monomial n : polinom) {
-            if (n.getCoef() > 0)
+            if (n.getCoef() > 0.0001)
                 s += " +" + n;
-            else if (n.getCoef() < 0)
+            else if (n.getCoef() < -0.0001)
                 s += " " + n;
         }
         return s;
@@ -127,7 +128,7 @@ public class Polynomial extends Monomial {
             Q = Polynomial.addOperation(Q, A);
         }
         Polynomial C = new Polynomial(P.getHighestDeg() - Q.getHighestDeg());
-        System.out.println(C.getHighestDeg()+"speciala");
+        System.out.println(C.getHighestDeg() + "speciala");
 
         System.out.println(Q.getHighestDeg() + " " + Q.getPolinom().get(0).getCoef());
         if ((Q.getHighestDeg() == 0 && Math.abs(Q.getPolinom().get(0).getCoef()) > 0.0001) || Q.getHighestDeg() > 0) {
