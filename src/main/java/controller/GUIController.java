@@ -36,22 +36,21 @@ public class GUIController {
             p1.getPolinom().sort(Monomial::compareTo);
                 p2.getPolinom().sort(Monomial::compareTo);
                 if (e.getSource().toString().contains("Addition")) {
-                    setTextFieldData(app.getPolinomRetTextField(), Polynomial.addOperation(p1, p2).toString());
+                    app.getPolinomRetTextArea().setText(Polynomial.addOperation(p1, p2).toString());
                 } else if (e.getSource().toString().contains("Subtraction")) {
-                    setTextFieldData(app.getPolinomRetTextField(), Polynomial.subOperation(p1, p2).toString());
+                    app.getPolinomRetTextArea().setText(Polynomial.subOperation(p1, p2).toString());
                 } else if (e.getSource().toString().contains("Multiplication")) {
-                    setTextFieldData(app.getPolinomRetTextField(), Polynomial.mulOperation(p1, p2).toString());
+                    app.getPolinomRetTextArea().setText(Polynomial.mulOperation(p1, p2).toString());
                 } else if (e.getSource().toString().contains("Division")) {
                     try {
-                        setTextFieldData(app.getPolinomRetTextField(), "Cat: " + Polynomial.divOperation(p1, p2).get(0) + "  Rest: " + Polynomial.divOperation(p1, p2).get(1));
+                        app.getPolinomRetTextArea().setText("Cat: " + Polynomial.divOperation(p1, p2).get(0) + "\nRest: " + Polynomial.divOperation(p1, p2).get(1));
                     } catch (ArithmeticException f) {
                         JOptionPane.showMessageDialog(null, "Impartire la ZERO!", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
-
                 } else if (e.getSource().toString().contains("Derrivation")) {
-                    setTextFieldData(app.getPolinomRetTextField(), Polynomial.derivateOperation(p1).toString());
+                    app.getPolinomRetTextArea().setText("Polinomul 1: " + Polynomial.derivateOperation(p1) + " + C" + "\nPolinomul 2: " + Polynomial.derivateOperation(p2) + " + C");
                 } else if (e.getSource().toString().contains("Integration")) {
-                    setTextFieldData(app.getPolinomRetTextField(), Polynomial.integrateOperation(p1) + " + C");
+                    app.getPolinomRetTextArea().setText("Polinomul 1: " + Polynomial.integrateOperation(p1) + " + C" + "\nPolinomul 2: " + Polynomial.integrateOperation(p2) + " + C");
                 }
             }
         };
@@ -131,13 +130,6 @@ public class GUIController {
             }
         }
         return m;
-    }
-
-    public void setTextFieldData(JTextField t, String p) {
-        t.setText(p);
-        if(t.getText().length() == 0){
-            t.setText("0");
-        }
     }
 
     public boolean verifyInput(JTextField t) {

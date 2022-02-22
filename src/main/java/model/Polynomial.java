@@ -5,7 +5,7 @@ import controller.Main;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class Polynomial extends Monomial {
+public class Polynomial {
     private ArrayList<Monomial> polinom;
     private int highestDeg;
 

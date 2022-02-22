@@ -87,9 +87,9 @@
       <component id="7e211" class="javax.swing.JTextField" binding="polinom1TextField">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
-            <minimum-size width="150" height="25"/>
-            <preferred-size width="150" height="25"/>
-            <maximum-size width="150" height="25"/>
+            <minimum-size width="150" height="50"/>
+            <preferred-size width="150" height="50"/>
+            <maximum-size width="150" height="50"/>
           </grid>
         </constraints>
         <properties>
@@ -99,9 +99,9 @@
       <component id="f0cf2" class="javax.swing.JTextField" binding="polinom2TextField">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
-            <minimum-size width="150" height="25"/>
-            <preferred-size width="150" height="25"/>
-            <maximum-size width="150" height="25"/>
+            <minimum-size width="150" height="50"/>
+            <preferred-size width="150" height="50"/>
+            <maximum-size width="150" height="50"/>
           </grid>
         </constraints>
         <properties>
@@ -120,18 +120,6 @@
           <horizontalAlignment value="0"/>
           <horizontalTextPosition value="0"/>
           <text value="Rezultat:"/>
-        </properties>
-      </component>
-      <component id="ef4dd" class="javax.swing.JTextField" binding="polinomRetTextField">
-        <constraints>
-          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
-            <minimum-size width="150" height="25"/>
-            <preferred-size width="150" height="25"/>
-            <maximum-size width="150" height="25"/>
-          </grid>
-        </constraints>
-        <properties>
-          <editable value="false"/>
         </properties>
       </component>
       <component id="f3c14" class="javax.swing.JButton" binding="derrivationButton" default-binding="true">
@@ -158,6 +146,27 @@
           <text value="Integration"/>
         </properties>
       </component>
+      <scrollpane id="2e23d">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="150" height="50"/>
+            <preferred-size width="150" height="50"/>
+            <maximum-size width="150" height="50"/>
+          </grid>
+        </constraints>
+        <properties>
+          <verticalScrollBarPolicy value="20"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="cd632" class="javax.swing.JTextArea" binding="polinomRetTextField">
+            <constraints/>
+            <properties>
+              <editable value="false"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
     </children>
   </grid>
 </form>
