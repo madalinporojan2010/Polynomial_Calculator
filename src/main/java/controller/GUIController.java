@@ -32,17 +32,29 @@ public class GUIController {
         buttonListener = e -> {
             p1 = getTextFieldData(app.getPolinom1TextField(), app.getLabel1());
             p2 = getTextFieldData(app.getPolinom2TextField(), app.getLabel2());
-            if (e.getSource().toString().contains("Addition")) {
-            } else if (e.getSource().toString().contains("Subtraction")) {
+            p1.getPolinom().sort(Monomial::compareTo);
+            p2.getPolinom().sort(Monomial::compareTo);
+            System.out.println(p1);
+            System.out.println(p2);
+            if (p1 != null && p2 != null) {
+                if (e.getSource().toString().contains("Addition")) {
+                    setTextFieldData(app.getPolinomRetTextField(), Polynomial.addOperation(p1, p2).toString());
+                } else if (e.getSource().toString().contains("Subtraction")) {
+                    setTextFieldData(app.getPolinomRetTextField(), Polynomial.subOperation(p1, p2).toString());
+                } else if (e.getSource().toString().contains("Multiplication")) {
+                    setTextFieldData(app.getPolinomRetTextField(), Polynomial.mulOperation(p1, p2).toString());
+                } else if (e.getSource().toString().contains("Division")) {
+                    try {
+                        setTextFieldData(app.getPolinomRetTextField(), "Cat: " + Polynomial.divOperation(p1, p2).get(0) + "  Rest: " + Polynomial.divOperation(p1, p2).get(1));
+                    } catch (ArithmeticException f) {
+                        JOptionPane.showMessageDialog(null, "Impartire la ZERO!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
 
-            } else if (e.getSource().toString().contains("Multiplication")) {
-
-            } else if (e.getSource().toString().contains("Division")) {
-
-            } else if (e.getSource().toString().contains("Derrivation")) {
-
-            } else if (e.getSource().toString().contains("Integration")) {
-
+                } else if (e.getSource().toString().contains("Derrivation")) {
+                    setTextFieldData(app.getPolinomRetTextField(), Polynomial.derivateOperation(p1).toString());
+                } else if (e.getSource().toString().contains("Integration")) {
+                    setTextFieldData(app.getPolinomRetTextField(), Polynomial.integrateOperation(p1) + " + C");
+                }
             }
         };
         app.getMultiplicationButton().addActionListener(buttonListener);
@@ -76,7 +88,6 @@ public class GUIController {
                     if (matcher1.group(2) != null) {
                         matcher2 = pattern2.matcher(matcher1.group(2));
                         ret = getResults(matcher2);
-                        //// polinoamele cu grad mai mic nu sunt adaugate
                         p.addOperation(new Polynomial(ret));
                     }
                     if (matcher1.group(3) != null) {
@@ -87,11 +98,13 @@ public class GUIController {
                     }
                 } catch (Exception e) {
                     System.out.println("Eroare convertire in int + " + e.getMessage());
+                    JOptionPane.showMessageDialog(null, l.getText() + " overflow/underflow!!", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
-                p.getPolinom().sort(Monomial::compareTo);
             }
+            //p.getPolinom().sort(Monomial::compareTo);
+            //p.setHighestDeg();
+            //System.out.println(p.getHighestDeg());
         }
-        System.out.println(p);
         return p;
     }
 
@@ -122,8 +135,8 @@ public class GUIController {
         return m;
     }
 
-    public void setTextFieldData() {
-
+    public void setTextFieldData(JTextField t, String p) {
+        t.setText(p);
     }
 
     public boolean verifyInput(JTextField t) {
@@ -152,8 +165,8 @@ public class GUIController {
                         isCorrect = false;
                     }
                 }
-                case '0','1','2','3','4','5','6','8','9' -> {
-                    if (length + 1 < input.length() && input.charAt(length + 1) == 'x'){
+                case '0', '1', '2', '3', '4', '5', '6', '8', '9' -> {
+                    if (length + 1 < input.length() && input.charAt(length + 1) == 'x') {
                         isCorrect = false;
                     }
                 }

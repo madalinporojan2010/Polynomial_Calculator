@@ -12,7 +12,7 @@ public class Polynomial extends Monomial {
     public Polynomial(int highestDeg) {
         this.highestDeg = highestDeg;
         polinom = new ArrayList<>();
-        for (int i = highestDeg; i >= 0; i--) {
+        for (int i = 0; i <= highestDeg; i++) {
             polinom.add(new Monomial(0, i));
         }
     }
@@ -118,16 +118,19 @@ public class Polynomial extends Monomial {
     }
 
     public static ArrayList<Polynomial> divOperation(Polynomial A, Polynomial B) throws ArithmeticException {
-        if (Math.min(A.getHighestDeg(), B.getHighestDeg()) != 0) {
-            Polynomial P = new Polynomial(Math.max(A.getHighestDeg(), B.getHighestDeg())), Q = new Polynomial(Math.min(A.getHighestDeg(), B.getHighestDeg()));
-            if (A.getHighestDeg() > B.getHighestDeg()) {
-                P = Polynomial.addOperation(P, A);
-                Q = Polynomial.addOperation(Q, B);
-            } else {
-                P = Polynomial.addOperation(P, B);
-                Q = Polynomial.addOperation(Q, A);
-            }
-            Polynomial C = new Polynomial(P.getHighestDeg() - Q.getHighestDeg());
+        Polynomial P = new Polynomial(Math.max(A.getHighestDeg(), B.getHighestDeg())), Q = new Polynomial(Math.min(A.getHighestDeg(), B.getHighestDeg()));
+        if (A.getHighestDeg() > B.getHighestDeg()) {
+            P = Polynomial.addOperation(P, A);
+            Q = Polynomial.addOperation(Q, B);
+        } else {
+            P = Polynomial.addOperation(P, B);
+            Q = Polynomial.addOperation(Q, A);
+        }
+        Polynomial C = new Polynomial(P.getHighestDeg() - Q.getHighestDeg());
+        System.out.println(C.getHighestDeg()+"speciala");
+
+        System.out.println(Q.getHighestDeg() + " " + Q.getPolinom().get(0).getCoef());
+        if ((Q.getHighestDeg() == 0 && Math.abs(Q.getPolinom().get(0).getCoef()) > 0.0001) || Q.getHighestDeg() > 0) {
 
             for (Monomial n : P.getPolinom()) {
                 if (P.getHighestDeg() >= Q.getHighestDeg()) {
