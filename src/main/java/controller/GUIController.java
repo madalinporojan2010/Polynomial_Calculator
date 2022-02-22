@@ -135,6 +135,9 @@ public class GUIController {
 
     public void setTextFieldData(JTextField t, String p) {
         t.setText(p);
+        if(t.getText().length() == 0){
+            t.setText("0");
+        }
     }
 
     public boolean verifyInput(JTextField t) {

@@ -78,7 +78,7 @@ public class PolynomialCalculator {
     private JFrame frame;
 
     public PolynomialCalculator(){
-        frame = new JFrame("UTCN aplicatie");
+        frame = new JFrame("UTCN Assignment #1");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setContentPane(panel1);
         frame.pack();

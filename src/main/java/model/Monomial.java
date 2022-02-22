@@ -40,8 +40,6 @@ public class Monomial implements Comparable<Monomial>{
             } else {
                 s += df.format(coef);
             }
-        }else{
-            s += "0";
         }
         return s;
     }
