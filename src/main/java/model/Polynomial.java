@@ -43,11 +43,6 @@ public class Polynomial {
                 max = n.getDeg();
         }
         this.highestDeg = max;
-        /*aux = max;
-        for (Monomial n : this.polinom) {
-            if (aux >= 0)
-                n.setDeg(aux--);
-        }*/
     }
 
     public String toString() {
@@ -128,11 +123,8 @@ public class Polynomial {
             Q = Polynomial.addOperation(Q, A);
         }
         Polynomial C = new Polynomial(P.getHighestDeg() - Q.getHighestDeg());
-        System.out.println(C.getHighestDeg() + "speciala");
 
-        System.out.println(Q.getHighestDeg() + " " + Q.getPolinom().get(0).getCoef());
         if ((Q.getHighestDeg() == 0 && Math.abs(Q.getPolinom().get(0).getCoef()) > 0.0001) || Q.getHighestDeg() > 0) {
-
             for (Monomial n : P.getPolinom()) {
                 if (P.getHighestDeg() >= Q.getHighestDeg()) {
                     Monomial catul = new Monomial(n.getCoef(), n.getDeg());

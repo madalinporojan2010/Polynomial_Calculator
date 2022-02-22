@@ -1,8 +1,6 @@
 package view;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class PolynomialCalculator {
     private JButton multiplicationButton;
@@ -11,7 +9,7 @@ public class PolynomialCalculator {
     private JButton divisionButton;
     private JTextField polinom1TextField;
     private JTextField polinom2TextField;
-    private JTextArea polinomRetTextField;
+    private JTextArea polinomRetTextArea;
     private JButton derrivationButton;
     private JButton integrationButton;
     private JPanel panel1;
@@ -43,10 +41,6 @@ public class PolynomialCalculator {
         return label2;
     }
 
-    public JLabel getResultLabel() {
-        return resultLabel;
-    }
-
     public JTextField getPolinom1TextField() {
         return polinom1TextField;
     }
@@ -56,7 +50,7 @@ public class PolynomialCalculator {
     }
 
     public JTextArea getPolinomRetTextArea() {
-        return polinomRetTextField;
+        return polinomRetTextArea;
     }
 
     public JButton getDerrivationButton() {
@@ -67,17 +61,9 @@ public class PolynomialCalculator {
         return integrationButton;
     }
 
-    public JPanel getPanel1() {
-        return panel1;
-    }
-
-    public JFrame getFrame() {
-        return frame;
-    }
-
     private JFrame frame;
 
-    public PolynomialCalculator(){
+    public PolynomialCalculator() {
         frame = new JFrame("UTCN Assignment #1");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setContentPane(panel1);

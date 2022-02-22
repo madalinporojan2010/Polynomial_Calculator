@@ -2,38 +2,23 @@ package controller;
 
 import model.Monomial;
 import model.Polynomial;
-import org.junit.jupiter.api.IndicativeSentencesGeneration;
-import org.junit.jupiter.params.shadow.com.univocity.parsers.conversions.RegexConversion;
 import view.PolynomialCalculator;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.jar.JarInputStream;
-import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
-import java.util.stream.Stream;
 
 public class GUIController {
-    private int choice;
-    private PolynomialCalculator app;
-    private String polynomialOutput;
-    private ActionListener buttonListener;
     private Polynomial p1;
     private Polynomial p2;
 
-    public GUIController() {
-        app = new PolynomialCalculator();
-        buttonListener = e -> {
+    public GUIController(PolynomialCalculator app) {
+        ActionListener buttonListener = e -> {
             p1 = getTextFieldData(app.getPolinom1TextField(), app.getLabel1());
             p2 = getTextFieldData(app.getPolinom2TextField(), app.getLabel2());
             if (p1 != null && p2 != null) {
-            p1.getPolinom().sort(Monomial::compareTo);
+                p1.getPolinom().sort(Monomial::compareTo);
                 p2.getPolinom().sort(Monomial::compareTo);
                 if (e.getSource().toString().contains("Addition")) {
                     app.getPolinomRetTextArea().setText(Polynomial.addOperation(p1, p2).toString());
@@ -98,9 +83,6 @@ public class GUIController {
                     JOptionPane.showMessageDialog(null, l.getText() + " overflow/underflow!!", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             }
-            //p.getPolinom().sort(Monomial::compareTo);
-            //p.setHighestDeg();
-            //System.out.println(p.getHighestDeg());
         }
         return p;
     }

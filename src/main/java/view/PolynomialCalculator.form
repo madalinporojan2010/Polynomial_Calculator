@@ -159,7 +159,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="cd632" class="javax.swing.JTextArea" binding="polinomRetTextField">
+          <component id="cd632" class="javax.swing.JTextArea" binding="polinomRetTextArea">
             <constraints/>
             <properties>
               <editable value="false"/>
