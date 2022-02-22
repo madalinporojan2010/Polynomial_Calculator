@@ -15,6 +15,9 @@ public class PolynomialCalculator {
     private JButton derrivationButton;
     private JButton integrationButton;
     private JPanel panel1;
+    private JLabel label1;
+    private JLabel label2;
+    private JLabel resultLabel;
 
     public JButton getMultiplicationButton() {
         return multiplicationButton;
@@ -30,6 +33,18 @@ public class PolynomialCalculator {
 
     public JButton getDivisionButton() {
         return divisionButton;
+    }
+
+    public JLabel getLabel1() {
+        return label1;
+    }
+
+    public JLabel getLabel2() {
+        return label2;
+    }
+
+    public JLabel getResultLabel() {
+        return resultLabel;
     }
 
     public JTextField getPolinom1TextField() {

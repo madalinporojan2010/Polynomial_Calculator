@@ -8,7 +8,7 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="6d617" class="javax.swing.JLabel">
+      <component id="6d617" class="javax.swing.JLabel" binding="label1">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="150" height="25"/>
@@ -19,7 +19,7 @@
         <properties>
           <horizontalAlignment value="0"/>
           <horizontalTextPosition value="0"/>
-          <text value="First Polynomial:"/>
+          <text value="Primul Polinom"/>
         </properties>
       </component>
       <component id="1beb3" class="javax.swing.JButton" binding="multiplicationButton" default-binding="true">
@@ -70,7 +70,7 @@
           <text value="Division"/>
         </properties>
       </component>
-      <component id="6cf48" class="javax.swing.JLabel">
+      <component id="6cf48" class="javax.swing.JLabel" binding="label2">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="150" height="25"/>
@@ -81,7 +81,7 @@
         <properties>
           <horizontalAlignment value="0"/>
           <horizontalTextPosition value="0"/>
-          <text value="Second Polynomial:"/>
+          <text value="Al Doilea Polinom"/>
         </properties>
       </component>
       <component id="7e211" class="javax.swing.JTextField" binding="polinom1TextField">
@@ -108,7 +108,7 @@
           <text value=""/>
         </properties>
       </component>
-      <component id="3912" class="javax.swing.JLabel">
+      <component id="3912" class="javax.swing.JLabel" binding="resultLabel">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="150" height="25"/>
@@ -119,7 +119,7 @@
         <properties>
           <horizontalAlignment value="0"/>
           <horizontalTextPosition value="0"/>
-          <text value="Result:"/>
+          <text value="Rezultat:"/>
         </properties>
       </component>
       <component id="ef4dd" class="javax.swing.JTextField" binding="polinomRetTextField">

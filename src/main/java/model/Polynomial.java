@@ -12,9 +12,15 @@ public class Polynomial extends Monomial {
     public Polynomial(int highestDeg) {
         this.highestDeg = highestDeg;
         polinom = new ArrayList<>();
-        for (int i = 0; i <= highestDeg; i++) {
+        for (int i = highestDeg; i >= 0; i--) {
             polinom.add(new Monomial(0, i));
         }
+    }
+
+    public Polynomial(Monomial m) {
+        highestDeg = m.getDeg();
+        polinom = new ArrayList<>();
+        this.polinom.add(m);
     }
 
     public ArrayList<Monomial> getPolinom() {
@@ -31,11 +37,16 @@ public class Polynomial extends Monomial {
 
     public void setHighestDeg() {
         int max = 0;
+        int aux;
         for (Monomial n : this.polinom) {
             if (max < n.getDeg() && Math.abs(n.getCoef()) > 0.0001)
                 max = n.getDeg();
         }
         this.highestDeg = max;
+        aux = max;
+        for (Monomial n : this.polinom) {
+            n.setDeg(aux--);
+        }
     }
 
     public String toString() {
@@ -46,7 +57,6 @@ public class Polynomial extends Monomial {
             else if (n.getCoef() < 0)
                 s += " " + n;
         }
-        s = s.substring(1);
         return s;
     }
 
@@ -107,7 +117,7 @@ public class Polynomial extends Monomial {
         return C;
     }
 
-    public static Polynomial[] divOperation(Polynomial A, Polynomial B) throws ArithmeticException {
+    public static ArrayList<Polynomial> divOperation(Polynomial A, Polynomial B) throws ArithmeticException {
         if (Math.min(A.getHighestDeg(), B.getHighestDeg()) != 0) {
             Polynomial P = new Polynomial(Math.max(A.getHighestDeg(), B.getHighestDeg())), Q = new Polynomial(Math.min(A.getHighestDeg(), B.getHighestDeg()));
             if (A.getHighestDeg() > B.getHighestDeg()) {
@@ -132,7 +142,10 @@ public class Polynomial extends Monomial {
                     P.setHighestDeg();
                 }
             }
-            return new Polynomial[]{C, P};
+            ArrayList<Polynomial> ret = new ArrayList<>();
+            ret.add(C);
+            ret.add(P);
+            return ret;
         } else {
             throw new ArithmeticException("Division by zero");
         }
