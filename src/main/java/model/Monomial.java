@@ -2,7 +2,7 @@ package model;
 
 import java.text.DecimalFormat;
 
-public class Monomial implements Comparable<Monomial>{
+public class Monomial implements Comparable<Monomial> {
     private float coef;
     private int deg;
 

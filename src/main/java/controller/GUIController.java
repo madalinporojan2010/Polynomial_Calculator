@@ -33,7 +33,7 @@ public class GUIController {
                         JOptionPane.showMessageDialog(null, "Impartire la ZERO!", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
                 } else if (e.getSource().toString().contains("Derrivation")) {
-                    app.getPolinomRetTextArea().setText("Polinomul 1: " + Polynomial.derivateOperation(p1) + " + C" + "\nPolinomul 2: " + Polynomial.derivateOperation(p2) + " + C");
+                    app.getPolinomRetTextArea().setText("Polinomul 1: " + Polynomial.derivateOperation(p1)  + "\nPolinomul 2: " + Polynomial.derivateOperation(p2));
                 } else if (e.getSource().toString().contains("Integration")) {
                     app.getPolinomRetTextArea().setText("Polinomul 1: " + Polynomial.integrateOperation(p1) + " + C" + "\nPolinomul 2: " + Polynomial.integrateOperation(p2) + " + C");
                 }
@@ -75,7 +75,6 @@ public class GUIController {
                     if (matcher1.group(3) != null) {
                         matcher2 = pattern2.matcher(matcher1.group(3));
                         ret = getResults(matcher2);
-
                         p.addOperation(new Polynomial(ret));
                     }
                 } catch (Exception e) {
@@ -118,8 +117,8 @@ public class GUIController {
         boolean isCorrect = true;
         String input = t.getText().replaceAll(" ", "").toLowerCase();
         int length = 0;
-        while (length < input.length()) {
-            switch (input.charAt(length)) {
+        for (char ch: input.toCharArray()) {
+            switch (ch) {
                 case '+', '-' -> {
                     if (length + 1 >= input.length() || (!Character.isDigit(input.charAt(length + 1)) && input.charAt(length + 1) != 'x')) {
                         isCorrect = false;
