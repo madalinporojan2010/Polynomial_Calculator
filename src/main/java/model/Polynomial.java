@@ -31,7 +31,6 @@ public class Polynomial {
 
     public void setHighestDeg() {
         int max = 0;
-        int aux;
         for (Monomial n : this.polinom) {
             if (max < n.getDeg() && Math.abs(n.getCoef()) > 0.0001)
                 max = n.getDeg();
@@ -46,6 +45,9 @@ public class Polynomial {
                 s += " +" + n;
             else if (n.getCoef() < -0.0001)
                 s += " " + n;
+            else if (highestDeg == 0){
+                s += "0";
+            }
         }
         return s;
     }

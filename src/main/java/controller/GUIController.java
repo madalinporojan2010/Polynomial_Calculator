@@ -66,13 +66,12 @@ public class GUIController {
             JOptionPane.showMessageDialog(null, l.getText() + " gresit!!", "ERROR", JOptionPane.ERROR_MESSAGE);
         else {
             Pattern pattern1 = Pattern.compile("([+-]?[^-+]+)");
-            Pattern pattern2 = Pattern.compile("([+-]?[0-9]+)");
             Matcher matcher1 = pattern1.matcher(t.getText().replaceAll(" ", "").toLowerCase());
             p = new Polynomial(getMaximumExponent(t));
             while (matcher1.find()) {
                 try {
                     if (matcher1.group(1) != null) {
-                        p.addOperation(new Polynomial(getResults(matcher1, pattern2)));
+                        p.addOperation(new Polynomial(getResults(matcher1)));
                     }
                 } catch (Exception e) {
                     System.out.println("Eroare convertire in int + " + e.getMessage());
@@ -96,7 +95,8 @@ public class GUIController {
         return max;
     }
 
-    public Monomial getResults(Matcher matcher1, Pattern p) {
+    public Monomial getResults(Matcher matcher1) {
+        Pattern p = Pattern.compile("([+-]?[0-9]+)");
         Matcher matcher2 = p.matcher(matcher1.group(1));
         Monomial m = new Monomial(1, 0);
         while (matcher2.find()) {
@@ -123,7 +123,7 @@ public class GUIController {
                     }
                 }
                 case '^' -> {
-                    if (length + 1 >= input.length() || length - 1 < 0 || (!Character.isDigit(input.charAt(length + 1)) && input.charAt(length + 1) != '+') || input.charAt(length - 1) != 'x') {
+                    if (length + 1 >= input.length() || length - 1 < 0 || !Character.isDigit(input.charAt(length + 1)) || input.charAt(length - 1) != 'x') {
                         isCorrect = false;
                     }
                 }
