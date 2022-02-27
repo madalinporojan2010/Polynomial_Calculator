@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MulOperationTest {
 
-    public MulOperationTest(){
+    public MulOperationTest() {
         System.out.println("Initializare Test Inmultire!");
     }
 
@@ -25,8 +25,6 @@ public class MulOperationTest {
         for (Monomial n : C.getPolinom()) {
             for (Monomial m : expectedRes.getPolinom()) {
                 if (n.getDeg() == m.getDeg() && n.getCoef() != m.getCoef()) {
-//                    System.out.println(n.getCoef() + " " + m.getCoef());
-//                    System.out.println(n.getDeg() + " " + m.getDeg());
                     isCorrect = false;
                 }
             }
@@ -36,7 +34,7 @@ public class MulOperationTest {
 
     private static List<Arguments> provideInput() {
         List<Arguments> argumentsList = new ArrayList<>();
-        Polynomial p1, p2, pres1, pres2;
+        Polynomial p1, p2, pres1;
         p1 = new Polynomial(5); // 3x^5+6
         p1.getPolinom().set(5, new Monomial(3, 5));
         p1.getPolinom().set(0, new Monomial(6, 0));
@@ -51,14 +49,7 @@ public class MulOperationTest {
         pres1.getPolinom().set(1, new Monomial(60, 1));
         pres1.getPolinom().set(0, new Monomial(36, 0));
 
-//        pres2 = new Polynomial(5);
-//        pres2.getPolinom().set(5, new Monomial(6, 5));
-//        pres2.getPolinom().set(0, new Monomial(12, 0));
-        //1 polinom de la mine 1 de la el
         argumentsList.add(Arguments.of(p1, p2, pres1));
-//        argumentsList.add(Arguments.of(p2, p1, pres1));
-//        argumentsList.add(Arguments.of(p1, p1, pres2));
-        //share la proiect pt un overview
         return argumentsList;
     }
 }

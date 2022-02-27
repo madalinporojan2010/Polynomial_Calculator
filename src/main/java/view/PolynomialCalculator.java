@@ -10,7 +10,7 @@ public class PolynomialCalculator {
     private JTextField polinom1TextField;
     private JTextField polinom2TextField;
     private JTextArea polinomRetTextArea;
-    private JButton derrivationButton;
+    private JButton derivationButton;
     private JButton integrationButton;
     private JPanel panel1;
     private JLabel label1;
@@ -53,8 +53,8 @@ public class PolynomialCalculator {
         return polinomRetTextArea;
     }
 
-    public JButton getDerrivationButton() {
-        return derrivationButton;
+    public JButton getDerivationButton() {
+        return derivationButton;
     }
 
     public JButton getIntegrationButton() {

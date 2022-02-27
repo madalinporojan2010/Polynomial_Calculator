@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class IntegrateOperationTest {
 
-    public IntegrateOperationTest(){
+    public IntegrateOperationTest() {
         System.out.println("Initializare Test Integrare!");
     }
 
@@ -26,8 +26,6 @@ public class IntegrateOperationTest {
         for (Monomial n : C.getPolinom()) {
             for (Monomial m : expectedRes.getPolinom()) {
                 if (n.getDeg() == m.getDeg() && Math.abs(n.getCoef() - m.getCoef()) > 0.0001) {
-//                    System.out.println(n.getCoef() + " " + m.getCoef());
-//                    System.out.println(n.getDeg() + " " + m.getDeg());
                     isCorrect = false;
                 }
             }
@@ -43,7 +41,7 @@ public class IntegrateOperationTest {
         p1.getPolinom().set(0, new Monomial(6, 0));
 
         pres1 = new Polynomial(6);
-        pres1.getPolinom().set(6, new Monomial(3f/6, 6));
+        pres1.getPolinom().set(6, new Monomial(3f / 6, 6));
         pres1.getPolinom().set(1, new Monomial(6, 1));
 
         argumentsList.add(Arguments.of(p1, pres1));

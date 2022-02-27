@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DerivateOperationTest {
 
-    public DerivateOperationTest(){
+    public DerivateOperationTest() {
         System.out.println("Initializare Test Derivare!");
     }
 
@@ -25,8 +25,6 @@ public class DerivateOperationTest {
         for (Monomial n : C.getPolinom()) {
             for (Monomial m : expectedRes.getPolinom()) {
                 if (n.getDeg() == m.getDeg() && n.getCoef() != m.getCoef()) {
-//                    System.out.println(n.getCoef() + " " + m.getCoef());
-//                    System.out.println(n.getDeg() + " " + m.getDeg());
                     isCorrect = false;
                 }
             }

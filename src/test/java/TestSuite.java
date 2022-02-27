@@ -4,6 +4,5 @@ import org.junit.platform.suite.api.Suite;
 
 @Suite
 @SelectPackages({"OperationTests"})
-public class TestSuite
-{
+public class TestSuite {
 }

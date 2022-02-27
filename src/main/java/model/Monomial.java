@@ -11,10 +11,6 @@ public class Monomial implements Comparable<Monomial> {
         this.deg = deg;
     }
 
-    public Monomial() {
-        this(0, 0);
-    }
-
     public float getCoef() {
         return coef;
     }

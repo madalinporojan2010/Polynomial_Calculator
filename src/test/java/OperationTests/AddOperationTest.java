@@ -11,8 +11,12 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+
+//                    System.out.println(n.getCoef() + " " + m.getCoef());
+//                    System.out.println(n.getDeg() + " " + m.getDeg());
+
 public class AddOperationTest {
-    public AddOperationTest(){
+    public AddOperationTest() {
         System.out.println("Initializare Test Adunare!");
     }
 
@@ -24,8 +28,6 @@ public class AddOperationTest {
         for (Monomial n : C.getPolinom()) {
             for (Monomial m : expectedRes.getPolinom()) {
                 if (n.getDeg() == m.getDeg() && n.getCoef() != m.getCoef()) {
-                    System.out.println(n.getCoef() + " " + m.getCoef());
-                    System.out.println(n.getDeg() + " " + m.getDeg());
                     isCorrect = false;
                 }
             }
@@ -49,11 +51,7 @@ public class AddOperationTest {
         pres1.getPolinom().set(1, new Monomial(10, 1));
         pres1.getPolinom().set(0, new Monomial(12, 0));
 
-        //1 polinom de la mine 1 de la el
         argumentsList.add(Arguments.of(p1, p2, pres1));
-//        argumentsList.add(Arguments.of(p2, p1, pres1));
-//        argumentsList.add(Arguments.of(p1, p1, pres2));
-        //share la proiect pt un overview
         return argumentsList;
     }
 }

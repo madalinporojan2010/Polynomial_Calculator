@@ -1,9 +1,7 @@
 package model;
 
-import controller.Main;
-
+import javax.swing.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class Polynomial {
     private ArrayList<Monomial> polinom;
@@ -25,10 +23,6 @@ public class Polynomial {
 
     public ArrayList<Monomial> getPolinom() {
         return polinom;
-    }
-
-    public void setPolinom(ArrayList<Monomial> polinom) {
-        this.polinom = polinom;
     }
 
     public int getHighestDeg() {
@@ -123,7 +117,6 @@ public class Polynomial {
             Q = Polynomial.addOperation(Q, A);
         }
         Polynomial C = new Polynomial(P.getHighestDeg() - Q.getHighestDeg());
-
         if ((Q.getHighestDeg() == 0 && Math.abs(Q.getPolinom().get(0).getCoef()) > 0.0001) || Q.getHighestDeg() > 0) {
             for (Monomial n : P.getPolinom()) {
                 if (P.getHighestDeg() >= Q.getHighestDeg()) {
@@ -132,7 +125,6 @@ public class Polynomial {
                     Polynomial aux = new Polynomial(catul.getDeg());
                     aux.getPolinom().add(catul);
                     C = Polynomial.subOperation(C, aux);
-
                     aux = Polynomial.mulOperation(Q, aux);
                     P.addOperation(aux);
                     P.setHighestDeg();
