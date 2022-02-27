@@ -1,6 +1,7 @@
+package OperationTests;
+
 import model.Monomial;
 import model.Polynomial;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -8,10 +9,14 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DivOperationTest {
+
+    public DivOperationTest(){
+        System.out.println("Initializare Test Impartire!");
+    }
+
     @ParameterizedTest
     @MethodSource("provideInput")
     public void divOperationTest(Polynomial A, Polynomial B, ArrayList<Polynomial> expectedRes) {
@@ -20,19 +25,17 @@ public class DivOperationTest {
         for (Monomial n : C.get(0).getPolinom()) {
             for (Monomial m : expectedRes.get(0).getPolinom()) {
                 if (n.getDeg() == m.getDeg() && Math.abs(n.getCoef() - m.getCoef()) > 0.0001) {
-                    System.out.println(n.getCoef() + " " + m.getCoef());
-                    System.out.println(n.getDeg() + " " + m.getDeg());
+//                    System.out.println(n.getCoef() + " " + m.getCoef());
+//                    System.out.println(n.getDeg() + " " + m.getDeg());
                     isCorrect = false;
                 }
             }
         }
-        System.out.println(C.get(0));
-        System.out.println(C.get(1));
         for (Monomial n : C.get(1).getPolinom()) {
             for (Monomial m : expectedRes.get(1).getPolinom()) {
                 if (n.getDeg() == m.getDeg() && Math.abs(n.getCoef() - m.getCoef()) > 0.0001) {
-                    System.out.println(n.getCoef() + " " + m.getCoef());
-                    System.out.println(n.getDeg() + " " + m.getDeg());
+//                    System.out.println(n.getCoef() + " " + m.getCoef());
+//                    System.out.println(n.getDeg() + " " + m.getDeg());
                     isCorrect = false;
                 }
             }
@@ -44,12 +47,12 @@ public class DivOperationTest {
         List<Arguments> argumentsList = new ArrayList<>();
         Polynomial p1, p2;
         ArrayList<Polynomial> pres1;
-        p1 = new Polynomial(5); // 3x^3+6*x^1
-        p1.getPolinom().set(5, new Monomial(3, 3));
-        p1.getPolinom().set(0, new Monomial(6, 1));
+        p1 = new Polynomial(3); // 3x^3+6*x^1
+        p1.getPolinom().set(3, new Monomial(3, 3));
+        p1.getPolinom().set(1, new Monomial(6, 1));
 
-        p2 = new Polynomial(1); //10*x^2+6
-        p2.getPolinom().set(1, new Monomial(10, 2));
+        p2 = new Polynomial(2); //10*x^2+6
+        p2.getPolinom().set(2, new Monomial(10, 2));
         p2.getPolinom().set(0, new Monomial(6, 0));
 
         pres1 = new ArrayList<>(); // CAT:0.3*x  REST:21/5*x
