@@ -28,7 +28,7 @@ public class Monomial implements Comparable<Monomial> {
     }
 
     public String toString() {
-        DecimalFormat df = new DecimalFormat("0.000");
+        DecimalFormat df = new DecimalFormat("0.00");
         String s = "";
         if (Math.abs(coef) > 0.0001) {
             if (deg != 0) {
@@ -36,7 +36,7 @@ public class Monomial implements Comparable<Monomial> {
             } else {
                 s += df.format(coef);
             }
-        }
+        }// tot in engleza
         return s;
     }
 
