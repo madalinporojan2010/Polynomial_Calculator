@@ -1,4 +1,4 @@
-package OperationTests;
+package operationtests;
 
 import model.Monomial;
 import model.Polynomial;
@@ -11,20 +11,21 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class SubOperationTest {
+public class IntegrateOperationTest {
 
-    public SubOperationTest() {
-        System.out.println("Initializare Test Scadere!");
+    public IntegrateOperationTest() {
+        System.out.println("Initializare Test Integrare!");
     }
+
 
     @ParameterizedTest
     @MethodSource("provideInput")
-    public void addOperationTest(Polynomial A, Polynomial B, Polynomial expectedRes) {
+    public void integrateOperationTest(Polynomial A, Polynomial expectedRes) {
         boolean isCorrect = true;
-        Polynomial C = Polynomial.subOperation(A, B);
+        Polynomial C = Polynomial.integrateOperation(A);
         for (Monomial n : C.getPolynomial()) {
             for (Monomial m : expectedRes.getPolynomial()) {
-                if (n.getDeg() == m.getDeg() && n.getCoef() != m.getCoef()) {
+                if (n.getDeg() == m.getDeg() && Math.abs(n.getCoef() - m.getCoef()) > 0.0001) {
                     isCorrect = false;
                 }
             }
@@ -34,21 +35,16 @@ public class SubOperationTest {
 
     private static List<Arguments> provideInput() {
         List<Arguments> argumentsList = new ArrayList<>();
-        Polynomial p1, p2, pres1;
-        p1 = new Polynomial(5);
+        Polynomial p1, pres1;
+        p1 = new Polynomial(5); // 3x^5+6
         p1.getPolynomial().set(5, new Monomial(3, 5));
         p1.getPolynomial().set(0, new Monomial(6, 0));
 
-        p2 = new Polynomial(1);
-        p2.getPolynomial().set(1, new Monomial(10, 1));
-        p2.getPolynomial().set(0, new Monomial(6, 0));
+        pres1 = new Polynomial(6);
+        pres1.getPolynomial().set(6, new Monomial(3f / 6, 6));
+        pres1.getPolynomial().set(1, new Monomial(6, 1));
 
-        pres1 = new Polynomial(5);
-        pres1.getPolynomial().set(5, new Monomial(3, 5));
-        pres1.getPolynomial().set(1, new Monomial(-10, 1));
-        pres1.getPolynomial().set(0, new Monomial(0, 0));
-
-        argumentsList.add(Arguments.of(p1, p2, pres1));
+        argumentsList.add(Arguments.of(p1, pres1));
         return argumentsList;
     }
 }

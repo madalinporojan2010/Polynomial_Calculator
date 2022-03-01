@@ -1,4 +1,4 @@
-package OperationTests;
+package operationtests;
 
 import model.Monomial;
 import model.Polynomial;
@@ -11,21 +11,20 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class IntegrateOperationTest {
+public class DerivateOperationTest {
 
-    public IntegrateOperationTest() {
-        System.out.println("Initializare Test Integrare!");
+    public DerivateOperationTest() {
+        System.out.println("Initializare Test Derivare!");
     }
-
 
     @ParameterizedTest
     @MethodSource("provideInput")
-    public void integrateOperationTest(Polynomial A, Polynomial expectedRes) {
+    public void derivateOperationTest(Polynomial A, Polynomial expectedRes) {
         boolean isCorrect = true;
-        Polynomial C = Polynomial.integrateOperation(A);
+        Polynomial C = Polynomial.derivateOperation(A);
         for (Monomial n : C.getPolynomial()) {
             for (Monomial m : expectedRes.getPolynomial()) {
-                if (n.getDeg() == m.getDeg() && Math.abs(n.getCoef() - m.getCoef()) > 0.0001) {
+                if (n.getDeg() == m.getDeg() && n.getCoef() != m.getCoef()) {
                     isCorrect = false;
                 }
             }
@@ -40,9 +39,8 @@ public class IntegrateOperationTest {
         p1.getPolynomial().set(5, new Monomial(3, 5));
         p1.getPolynomial().set(0, new Monomial(6, 0));
 
-        pres1 = new Polynomial(6);
-        pres1.getPolynomial().set(6, new Monomial(3f / 6, 6));
-        pres1.getPolynomial().set(1, new Monomial(6, 1));
+        pres1 = new Polynomial(4);
+        pres1.getPolynomial().set(4, new Monomial(15, 4));
 
         argumentsList.add(Arguments.of(p1, pres1));
         return argumentsList;

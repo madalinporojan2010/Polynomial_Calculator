@@ -1,4 +1,4 @@
-package OperationTests;
+package operationtests;
 
 import model.Monomial;
 import model.Polynomial;
