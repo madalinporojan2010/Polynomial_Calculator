@@ -23,8 +23,8 @@ public class IntegrateOperationTest {
     public void integrateOperationTest(Polynomial A, Polynomial expectedRes) {
         boolean isCorrect = true;
         Polynomial C = Polynomial.integrateOperation(A);
-        for (Monomial n : C.getPolinom()) {
-            for (Monomial m : expectedRes.getPolinom()) {
+        for (Monomial n : C.getPolynomial()) {
+            for (Monomial m : expectedRes.getPolynomial()) {
                 if (n.getDeg() == m.getDeg() && Math.abs(n.getCoef() - m.getCoef()) > 0.0001) {
                     isCorrect = false;
                 }
@@ -37,12 +37,12 @@ public class IntegrateOperationTest {
         List<Arguments> argumentsList = new ArrayList<>();
         Polynomial p1, pres1;
         p1 = new Polynomial(5); // 3x^5+6
-        p1.getPolinom().set(5, new Monomial(3, 5));
-        p1.getPolinom().set(0, new Monomial(6, 0));
+        p1.getPolynomial().set(5, new Monomial(3, 5));
+        p1.getPolynomial().set(0, new Monomial(6, 0));
 
         pres1 = new Polynomial(6);
-        pres1.getPolinom().set(6, new Monomial(3f / 6, 6));
-        pres1.getPolinom().set(1, new Monomial(6, 1));
+        pres1.getPolynomial().set(6, new Monomial(3f / 6, 6));
+        pres1.getPolynomial().set(1, new Monomial(6, 1));
 
         argumentsList.add(Arguments.of(p1, pres1));
         return argumentsList;

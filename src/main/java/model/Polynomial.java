@@ -1,28 +1,27 @@
 package model;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 public class Polynomial {
-    private ArrayList<Monomial> polinom;
+    private ArrayList<Monomial> polynomial;
     private int highestDeg;
 
     public Polynomial(int highestDeg) {
         this.highestDeg = highestDeg;
-        polinom = new ArrayList<>();
+        polynomial = new ArrayList<>();
         for (int i = 0; i <= highestDeg; i++) {
-            polinom.add(new Monomial(0, i));
+            polynomial.add(new Monomial(0, i));
         }
     }
 
     public Polynomial(Monomial m) {
         highestDeg = m.getDeg();
-        polinom = new ArrayList<>();
-        this.polinom.add(m);
+        polynomial = new ArrayList<>();
+        this.polynomial.add(m);
     }
 
-    public ArrayList<Monomial> getPolinom() {
-        return polinom;
+    public ArrayList<Monomial> getPolynomial() {
+        return polynomial;
     }
 
     public int getHighestDeg() {
@@ -31,7 +30,7 @@ public class Polynomial {
 
     public void setHighestDeg() {
         int max = 0;
-        for (Monomial n : this.polinom) {
+        for (Monomial n : this.polynomial) {
             if (max < n.getDeg() && Math.abs(n.getCoef()) > 0.0001)
                 max = n.getDeg();
         }
@@ -40,7 +39,7 @@ public class Polynomial {
 
     public String toString() {
         String s = "";
-        for (Monomial n : polinom) {
+        for (Monomial n : polynomial) {
             if (n.getCoef() > 0.0001)
                 s += " +" + n;
             else if (n.getCoef() < -0.0001)
@@ -55,22 +54,22 @@ public class Polynomial {
     public static Polynomial addOperation(Polynomial A, Polynomial B) {
         Polynomial C = new Polynomial(Math.max(A.getHighestDeg(), B.getHighestDeg()));
 
-        for (Monomial n : C.getPolinom()) {
-            for (Monomial m : A.getPolinom()) {
+        for (Monomial n : C.getPolynomial()) {
+            for (Monomial m : A.getPolynomial()) {
                 n.addOperation(m);
             }
 
-            for (Monomial m : B.getPolinom()) {
+            for (Monomial m : B.getPolynomial()) {
                 n.addOperation(m);
             }
         }
-        C.getPolinom().sort(Monomial::compareTo);
+        C.getPolynomial().sort(Monomial::compareTo);
         return C;
     }
 
     public void addOperation(Polynomial B) {
-        for (Monomial n : this.getPolinom()) {
-            for (Monomial m : B.getPolinom()) {
+        for (Monomial n : this.getPolynomial()) {
+            for (Monomial m : B.getPolynomial()) {
                 n.addOperation(m);
             }
         }
@@ -79,33 +78,33 @@ public class Polynomial {
     public static Polynomial subOperation(Polynomial A, Polynomial B) {
         Polynomial C = new Polynomial(Math.max(A.getHighestDeg(), B.getHighestDeg()));
 
-        for (Monomial n : C.getPolinom()) {
-            for (Monomial m : A.getPolinom()) {
+        for (Monomial n : C.getPolynomial()) {
+            for (Monomial m : A.getPolynomial()) {
                 n.addOperation(m);
             }
 
-            for (Monomial m : B.getPolinom()) {
+            for (Monomial m : B.getPolynomial()) {
                 Monomial aux = new Monomial(-m.getCoef(), m.getDeg());
                 n.addOperation(aux);
             }
         }
-        C.getPolinom().sort(Monomial::compareTo);
+        C.getPolynomial().sort(Monomial::compareTo);
         return C;
     }
 
     public static Polynomial mulOperation(Polynomial A, Polynomial B) {
         Polynomial C = new Polynomial(A.getHighestDeg() + B.getHighestDeg());
 
-        for (Monomial n : A.getPolinom()) {
+        for (Monomial n : A.getPolynomial()) {
             Polynomial aux = new Polynomial(0);
-            for (Monomial m : B.getPolinom()) {
+            for (Monomial m : B.getPolynomial()) {
                 Monomial product = new Monomial(n.getCoef(), n.getDeg());
                 product.mulOperation(m);
-                aux.getPolinom().add(product);
+                aux.getPolynomial().add(product);
             }
             C = addOperation(C, aux);
         }
-        C.getPolinom().sort(Monomial::compareTo);
+        C.getPolynomial().sort(Monomial::compareTo);
         return C;
     }
 
@@ -119,13 +118,13 @@ public class Polynomial {
             Q = Polynomial.addOperation(Q, A);
         }
         Polynomial C = new Polynomial(P.getHighestDeg() - Q.getHighestDeg());
-        if ((Q.getHighestDeg() == 0 && Math.abs(Q.getPolinom().get(0).getCoef()) > 0.0001) || Q.getHighestDeg() > 0) {
-            for (Monomial n : P.getPolinom()) {
+        if ((Q.getHighestDeg() == 0 && Math.abs(Q.getPolynomial().get(0).getCoef()) > 0.0001) || Q.getHighestDeg() > 0) {
+            for (Monomial n : P.getPolynomial()) {
                 if (P.getHighestDeg() >= Q.getHighestDeg()) {
                     Monomial catul = new Monomial(n.getCoef(), n.getDeg());
-                    catul.getQuotient(Q.getPolinom().get(0)); // impartitor
+                    catul.getQuotient(Q.getPolynomial().get(0)); // divider
                     Polynomial aux = new Polynomial(catul.getDeg());
-                    aux.getPolinom().add(catul);
+                    aux.getPolynomial().add(catul);
                     C = Polynomial.subOperation(C, aux);
                     aux = Polynomial.mulOperation(Q, aux);
                     P.addOperation(aux);
@@ -144,20 +143,20 @@ public class Polynomial {
     public static Polynomial derivateOperation(Polynomial A) {
         Polynomial C = new Polynomial(Math.max(A.getHighestDeg() - 1, 0));
         C = addOperation(C, A);
-        for (Monomial n : C.getPolinom()) {
+        for (Monomial n : C.getPolynomial()) {
             n.derivateOperation();
         }
-        C.getPolinom().sort(Monomial::compareTo);
+        C.getPolynomial().sort(Monomial::compareTo);
         return C;
     }
 
     public static Polynomial integrateOperation(Polynomial A) {
         Polynomial C = new Polynomial(A.getHighestDeg() + 1);
         C = addOperation(C, A);
-        for (Monomial n : C.getPolinom()) {
+        for (Monomial n : C.getPolynomial()) {
             n.integrateOperation();
         }
-        C.getPolinom().sort(Monomial::compareTo);
+        C.getPolynomial().sort(Monomial::compareTo);
         return C;
     }
 

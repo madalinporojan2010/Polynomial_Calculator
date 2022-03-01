@@ -20,8 +20,8 @@ public class GUIController {
             p1 = getTextFieldData(app.getPolinom1TextField(), app.getLabel1());
             p2 = getTextFieldData(app.getPolinom2TextField(), app.getLabel2());
             if (p1 != null && p2 != null) {
-                p1.getPolinom().sort(Monomial::compareTo);
-                p2.getPolinom().sort(Monomial::compareTo);
+                p1.getPolynomial().sort(Monomial::compareTo);
+                p2.getPolynomial().sort(Monomial::compareTo);
                 connectButtons(((JButton) e.getSource()).getText());
             }
         };
