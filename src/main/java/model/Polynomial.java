@@ -39,14 +39,16 @@ public class Polynomial {
 
     public String toString() {
         String s = "";
+        boolean isZeroAlready = false;
         for (Monomial n : polynomial) {
             if (n.getCoef() > 0.0001)
                 s += " +" + n;
             else if (n.getCoef() < -0.0001)
                 s += " " + n;
-//            else if (highestDeg == 0){
-//                s += "0";
-//            }
+            else if (highestDeg == 0 && !isZeroAlready){
+                isZeroAlready = true;
+                s += "0";
+            }
         }
         return s;
     }
