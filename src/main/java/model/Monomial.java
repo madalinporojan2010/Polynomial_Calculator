@@ -29,14 +29,22 @@ public class Monomial implements Comparable<Monomial> {
 
     public String toString() {
         DecimalFormat df = new DecimalFormat("0.00");
+        DecimalFormat auxDf = new DecimalFormat("0");
         String s = "";
         if (Math.abs(coef) > 0.0001) {
+            if (df.format(coef).compareTo("1.00") != 0 || deg == 0) {
+                if (df.format(coef).compareTo("-1.00") == 0 && deg > 0) {
+                    s += "-";
+                } else if (df.format(coef).contains(".00"))
+                    s += auxDf.format(coef);
+                else
+                    s += df.format(coef);
+            }
             if (deg != 0) {
-                s += df.format(coef) + "*X^" + deg;
-            } else {
-                s += df.format(coef);
+                s += "x^" + deg;
             }
         }// tot in engleza
+        //1x^6
         return s;
     }
 

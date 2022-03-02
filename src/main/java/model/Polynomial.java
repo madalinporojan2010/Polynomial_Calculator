@@ -45,7 +45,7 @@ public class Polynomial {
                 s += " +" + n;
             else if (n.getCoef() < -0.0001)
                 s += " " + n;
-            else if (highestDeg == 0 && !isZeroAlready){
+            else if (highestDeg == 0 && !isZeroAlready && n.getDeg() == 0){
                 isZeroAlready = true;
                 s += "0";
             }
@@ -112,7 +112,7 @@ public class Polynomial {
 
     public static ArrayList<Polynomial> divOperation(Polynomial A, Polynomial B) throws ArithmeticException {
         Polynomial P = new Polynomial(Math.max(A.getHighestDeg(), B.getHighestDeg())), Q = new Polynomial(Math.min(A.getHighestDeg(), B.getHighestDeg()));
-        if (A.getHighestDeg() > B.getHighestDeg()) {
+        if (A.getHighestDeg() >= B.getHighestDeg()) {
             P = Polynomial.addOperation(P, A);
             Q = Polynomial.addOperation(Q, B);
         } else {
